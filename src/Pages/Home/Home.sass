@@ -1,0 +1,144 @@
+.welcome
+    h2
+        font-size: 50px
+        font-weight: bold
+    h5
+        font-size: 30px 
+.custom-img
+  background-image: url("../../assets/images/car-parallax.jpg")
+  background-attachment: fixed
+  background-size: cover
+  position: relative
+  &:before
+    position: absolute
+    content: ""
+    background-color: rgba(6, 6, 6, 0.75)
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+.about-left-section
+    background: url("../../assets/images/about-car.jpg")
+    height: 470px
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    border-radius: 10px
+.why-us-section
+    svg
+        width: 80px
+    strong
+        font-size: 25px
+        margin-bottom: 10px
+        display: block
+    p
+        font-size: 14px
+        line-height: 28px
+
+.car-detail
+  border: solid 1px #ddd
+  border-radius: 5px
+
+  .card-image
+    width: 100%
+    height: 200px
+    overflow: hidden
+    display: flex
+    align-items: center
+    border-radius: 5px 5px 0 0 
+    img
+      border-radius: 5px 5px 0 0 
+      max-width: 100%
+      transition: all 0.3s ease-in-out
+      &:hover
+        transform: scale(1.2)
+
+  .card-description
+    padding: 10px
+    position: relative
+    padding-top: 30px
+    &:before
+      content: ""
+      background-image: url("../../assets/images/rental-bottom-border.png")
+      left: 0
+      right: 0
+      width: 100%
+      height: 16px
+      position: absolute
+      top: 0
+      background-repeat: repeat
+      opacity: 0.5
+    strong
+      display: flex
+      align-items: center
+      justify-content: space-between
+    .color-box
+      display: inline-block
+      width: 20px
+      height: 20px
+      border: solid 1px #ddd
+      border-radius: 5px
+      background: red
+        
+    .car-color
+      cursor: pointer
+      position: relative
+      &:hover
+          .tooltip
+            position: absolute
+            display: inline-flex
+            white-space: nowrap
+            font-size: 12px
+            font-weight: 300
+            background: #fff
+            border: solid 1px #ddd
+            padding: 2px 5px
+            border-radius: 5px
+            top: -35px
+            left: -5px
+      .tooltip
+        display: none
+        &:after
+          content: ''
+          width: 0 
+          height: 0
+          border-left: 10px solid transparent
+          border-right: 10px solid transparent
+          border-top: 10px solid #fff
+          position: absolute
+          bottom: -10px
+  ul 
+    padding-left: 0
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    margin-top: 15px
+    flex-direction: column
+    li
+      display: flex
+      align-items: center
+      width: 100%
+      justify-content: space-between
+      font-size: 12px
+      padding: 10px 0
+      border-bottom: dashed 1px #222
+      &:last-child
+        border-bottom: 0
+  .more-details
+    font-size: 12px
+    font-weight: 300
+    text-decoration: underline
+    margin-top: 30px
+    margin-bottom: 30px
+    display: block
+    cursor: pointer
+.customer-wrapper
+  border-radius: 10px
+  position: relative
+  h2
+    font-size: 40px
+    font-weight: bold
+    margin-bottom: 15px
+  h3
+    color: #fff
+    font-size: 25px

@@ -1,0 +1,22 @@
+.vehicle-multi-border
+    position: relative
+    &.yellow-black
+        background-image: -webkit-linear-gradient(0deg, #ffcc00 15px, #333 0)
+    &::before
+        top: -12px
+        content: ""
+        position: absolute
+        left: 0px
+        right: 0px
+        height: 12px
+        background-size: 30px
+footer
+    background-image: url("../../assets/images/footer-bg.png")
+    &::before
+        background-image: -webkit-linear-gradient(0deg, #ffcc00 15px, #333 0)
+        content: ""
+        position: absolute
+        left: 0px
+        right: 0px
+        height: 12px
+        background-size: 30px

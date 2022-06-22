@@ -1,0 +1,69 @@
+.banner-wrapper
+  background: url("../../assets/images/banner-bg.jpg")
+  height: 100%
+  width: 100%
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  padding-bottom: 20px 
+  h4
+    font-size: 30px
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    position: relative
+    padding-left: 30px
+    padding-right: 30px
+    &:before
+      content: ''
+      width: 15px
+      height: 15px
+      background: red
+      border-radius: 50%
+      position: absolute
+      left: 0
+    &:after
+      content: ''
+      width: 15px
+      height: 15px
+      background: red
+      border-radius: 50%
+      position: absolute
+      right: 0
+  h1
+    font-size: 70px
+    margin-bottom: 50px
+.rate-availbility
+  h2
+    font-size: 30px
+    font-weight: bold
+  h5
+    font-size: 20px
+.react-datetime-picker__wrapper
+  border: none  !important
+  color:  rgb(175, 177, 179)
+  svg
+    stroke:  rgb(175, 177, 179)
+    display: none
+.react-datetime-picker__button
+  padding: 0 5px !important
+  &:enabled
+    &:hover
+      .react-datetime-picker__button__icon
+        stroke: rgb(255, 204, 0) !important 
+.vehicle-section-divider
+  height: 50px
+  display: flex
+  align-items: center
+  position: relative
+  &::before
+    border-top: dashed #ececec
+    width: 100%
+    content: ""
+    left: 0
+    right: 0
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 25px
+    z-index: 0
