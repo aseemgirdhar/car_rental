@@ -14,8 +14,8 @@ const product = {
   price: '200',
   href: '#',
   breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' },
+    { id: 1, name: 'Home', href: '/dashboard' },
+    
   ],
   images: [
     {

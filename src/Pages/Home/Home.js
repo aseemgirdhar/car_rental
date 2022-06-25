@@ -19,10 +19,12 @@ import {
   ViewGridIcon,
   ViewListIcon,
 } from "@heroicons/react/solid";
-import ScrollAnimation from 'react-animate-on-scroll';
+
 import "animate.css";
+import {Link} from 'react-router-dom'
 
 const Home = () => {
+
   const [details, moreDetails] = useState(false);
   const [cardView, setCardView] = useState(false);
 
@@ -124,7 +126,7 @@ const Home = () => {
     <>
       <BookingBanner />
 
-      <div className="welcome my-24"  data-aos="fade-up" data-aos-duration="1500">
+      <div className="welcome my-24"  data-aos="fade-up" data-aos-duration="1500" id='about'>
         <h2 className="text-bg">WELCOME TO US</h2>
         <h5> THE BEST SERVICES OUR COMPANY </h5>
       </div>
@@ -439,6 +441,7 @@ const Home = () => {
                             : "grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8"
                         }`}
                       >
+                        <Link to='/details'>
                         <div className="car-detail" data-aos="flip-left" 
      data-aos-easing="ease-out-cubic"
      data-aos-duration="1500">
@@ -486,6 +489,7 @@ const Home = () => {
                             </button>
                           </div>
                         </div>
+                        </Link>
 
                         <div className="car-detail" data-aos="flip-left"
      data-aos-easing="ease-out-cubic"

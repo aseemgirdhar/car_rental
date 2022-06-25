@@ -112,12 +112,12 @@ const Footer = () => {
               Products
             </h6>
             <p class="mb-4">
-              <a href="#!" class="text-textColorWhite hover:text-bg">
+              <a href="/dashboard" class="text-textColorWhite hover:text-bg">
                 Home
               </a>
             </p>
             <p class="mb-4">
-              <a href="#!" class="text-textColorWhite hover:text-bg">
+              <a href="/team" class="text-textColorWhite hover:text-bg">
                 Team
               </a>
             </p>
@@ -127,7 +127,7 @@ const Footer = () => {
               </a>
             </p>
             <p >
-              <a href="#!" class="text-textColorWhite hover:text-bg">
+              <a href="/contact" class="text-textColorWhite hover:text-bg">
                 Contact
               </a>
             </p>
@@ -138,22 +138,22 @@ const Footer = () => {
               Useful links
             </h6>
             <p class="mb-4">
-              <a href="#!" class="text-textColorWhite hover:text-bg">
+              <a href="/profile" class="text-textColorWhite hover:text-bg">
                 Wallet
               </a>
             </p>
             <p class="mb-4">
-              <a href="#!" class="text-textColorWhite hover:text-bg">
+              <a href="/profile" class="text-textColorWhite hover:text-bg">
                 Order History
               </a>
             </p>
             <p class="mb-4">
-              <a href="#!" class="text-textColorWhite hover:text-bg">
-                Offers
+              <a href="#about" class="text-textColorWhite hover:text-bg">
+                About
               </a>
             </p>
             <p>
-              <a href="#!" class="text-textColorWhite hover:text-bg">
+              <a href="/contact" class="text-textColorWhite hover:text-bg">
                 Help
               </a>
             </p>

@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Logo from '../../assets/images/logo.png'
 import { motion } from "framer-motion";
+import {Link} from 'react-router-dom';
 const user = {
     name: 'Tom Cook',
     email: 'tom@example.com',
@@ -11,14 +12,14 @@ const user = {
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
+    { name: 'Home', href: '/dashboard', current: true },
+    { name: 'Team', href: '/team', current: false },
     { name: 'Drive With Us', href: '#', current: false },
-    { name: 'Contact', href: '#', current: false },
+    { name: 'Contact', href: '/contact', current: false },
 ]
 const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
+    { name: 'Your Profile', href: '/profile' },
+    
     { name: 'Sign out', href: '#' },
 ]
 
@@ -37,30 +38,47 @@ const Header = () => {
                                 <div className="flex items-center justify-between h-16">
                                     <div className="flex items-center">
                                         <div className="flex-shrink-0">
+                                            <Link to='/dashboard'>
                                             <img
                                                 className="h-50 w-50"
                                                 src={Logo}
                                                 alt="Workflow"
                                             />
+                                            </Link>
                                         </div>
                                         <div className="hidden md:block">
                                             <div className="ml-10 flex items-baseline space-x-4">
-                                                {navigation.map((item) => (
                                                     <motion.a
                                                         whileTap={{ scale: 0.6 }}
-                                                        key={item.name}
-                                                        href={item.href}
-                                                        className={classNames(
-                                                            item.current
-                                                                ? 'bg-bg text-black'
-                                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                            'px-3 py-2 rounded-md text-sm font-medium'
-                                                        )}
-                                                        aria-current={item.current ? 'page' : undefined}
+                                                        href='/dashboard'
+                                                        className='text-textColorWhite'
                                                     >
-                                                        {item.name}
+                                                       Home
                                                     </motion.a>
-                                                ))}
+                                                    <motion.a
+                                                        whileTap={{ scale: 0.6 }}
+                                                         className='text-textColorWhite'
+                                                        href='/team'
+                                                    >
+                                                       Our Team
+                                                    </motion.a>
+
+                                                    <motion.a
+                                                     className='text-textColorWhite'
+                                                        whileTap={{ scale: 0.6 }}
+                                                        href='/dashboard'
+                                                    >
+                                                       Drive with Us
+                                                    </motion.a>
+
+                                                    <motion.a
+                                                     className='text-textColorWhite'
+                                                        whileTap={{ scale: 0.6 }}
+                                                        href='/contact'
+                                                    >
+                                                      Contact
+                                                    </motion.a>
+                                              
                                             </div>
                                         </div>
                                     </div>
