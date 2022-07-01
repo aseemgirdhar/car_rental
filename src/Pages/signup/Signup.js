@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-const Signup = () => {
+const Signup = ({showSignup}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [contact, setContact] = useState("");
   const [role, setRole] = useState("User");
   const [name, setName] = useState("");
+  const showLoginComponent = () => {
+    console.log(showSignup)
+    showSignup(false)
+  }
   const signupHandeler = async (e) => {
     e.preventDefault();
 
@@ -104,7 +108,7 @@ const Signup = () => {
         <div className="mb-6 text-left">
           <label>Login As</label>
           <div class="flex justify-center">
-            <div class="mb-3 xl:w-96">
+            <div class="mb-3 w-full">
               <select
                 class="form-select appearance-none
       block
@@ -144,7 +148,7 @@ const Signup = () => {
           <p className="text-sm font-semibold mt-2 pt-1 mb-0">
             Already have an account?
             <a
-              href="#!"
+              onClick={showLoginComponent}
               className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out ml-3"
             >
               Login

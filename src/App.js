@@ -11,6 +11,7 @@ import Contact from "./Pages/Contact/Contact";
 import Team from "./Pages/Team/Team";
 import CarList from "./Pages/carList/CarList";
 import About from "./Pages/About/About";
+import AddCar from "./Pages/addCar/AddCar";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/team" element={<Team />} />
             <Route path="/car-list" element={<CarList />} />
+            <Route path="/add-car" element={<AddCar />} />
           </Routes>
           <Footer />
         </Router>

@@ -18,6 +18,7 @@ const Login = () => {
     const config = {
       headers: {
         "Content-type": "application/json",
+        
       },
     };
     if(role === 'User') {
@@ -103,7 +104,7 @@ const Login = () => {
               <div className="mb-6 text-left">
           <label>Login As</label>
           <div class="flex justify-center">
-            <div class="mb-3 xl:w-96">
+            <div class="mb-3 w-full">
               <select
                 class="form-select appearance-none
       block
@@ -160,9 +161,9 @@ const Login = () => {
                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                   Don't have an account?
                   <a
-                    
+                        showSignup = {showSignup}
                     onClick={showSignupComponent}
-                    className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                    className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out ml-3 cursor-pointer"
                   >
                     Register
                   </a>
@@ -175,125 +176,6 @@ const Login = () => {
       </div>
     </section>
 
-    // <section className="h-screen login-bg">
-    //   <div className="container px-6 py-12 h-full m-auto">
-    //     <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-    //       {/* <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-    //     <img src={LoginImg} className="w-full" alt="Phone image" />
-    //   </div> */}
-    //       <div className=" form-bg">
-    //         <div className="w-350">
-    //           <form onSubmit={loginHandeler}>
-    //             {/* Email input */}
-    //             <div className="mb-6">
-    //               <input
-    //                 type="text"
-    //                 onChange={(e) => setEmail(e.target.value)}
-    //                 className="form-control block placeholder-textColor w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-    //                 placeholder="Email address"
-    //               />
-    //             </div>
-    //             {/* Password input */}
-    //             <div className="mb-6">
-    //               <input
-    //                 type="password"
-    //                 onChange={(e) => setPassword(e.target.value)}
-    //                 className="form-control block placeholder-textColor w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-    //                 placeholder="Password"
-    //               />
-    //             </div>
-    //             <div className="flex justify-between items-center mb-6">
-    //               <div>
-    //                 <div className="form-check form-check-inline">
-    //                   <input
-    //                     className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-    //                     type="radio"
-    //                     name="inlineRadioOptions"
-    //                     id="inlineRadio1"
-    //                     defaultValue="option1"
-    //                   />
-    //                   <label
-    //                     className="form-check-label inline-block text-white"
-    //                     htmlFor="inlineRadio10"
-
-    //                   >
-    //                     User
-    //                   </label>
-    //                 </div>
-    //                 <div className="form-check form-check-inline">
-    //                   <input
-    //                     className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-    //                     type="radio"
-    //                     name="inlineRadioOptions"
-    //                     id="inlineRadio2"
-    //                     defaultValue="option2"
-    //                   />
-    //                   <label
-    //                     className="form-check-label inline-block text-white"
-    //                     htmlFor="inlineRadio20"
-    //                   >
-    //                     Owner
-    //                   </label>
-    //                 </div>
-    //               </div>
-
-    //               <a
-    //                 href="#!"
-    //                 className="text-white hover:text-bg focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-    //               >
-    //                 Forgot password?
-    //               </a>
-    //             </div>
-    //             {/* Submit button */}
-    //             <button
-    //               type="submit"
-    //               className="inline-block px-7 py-3 bg-bg text-textColor font-bold text-sm leading-snug uppercase rounded shadow-md hover:bg-cartNumBg hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-    //               data-mdb-ripple="true"
-    //               data-mdb-ripple-color="light"
-    //             >
-    //               Sign in
-    //             </button>
-    //             <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-    //               <p className="text-center font-semibold mx-4 mb-0 text-white">
-    //                 OR
-    //               </p>
-    //             </div>
-    //             <a
-    //               className="inline-block px-7 py-3 bg-bg text-textColor font-bold text-sm leading-snug uppercase rounded shadow-md hover:bg-cartNumBg hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition mb-3 duration-150 ease-in-out w-full"
-    //               href="#!"
-    //               role="button"
-    //             >
-    //               {/* Twitter */}
-    //               SignUp
-    //             </a>
-    //             <a
-    //               className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
-    //               style={{ backgroundColor: "#3b5998" }}
-    //               href="#!"
-    //               role="button"
-    //               data-mdb-ripple="true"
-    //               data-mdb-ripple-color="light"
-    //             >
-    //               {/* Facebook */}
-    //               <svg
-    //                 xmlns="http://www.w3.org/2000/svg"
-    //                 viewBox="0 0 320 512"
-    //                 className="w-3.5 h-3.5 mr-2"
-    //               >
-    //                 {/*! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. */}
-    //                 <path
-    //                   fill="currentColor"
-    //                   d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-    //                 />
-    //               </svg>
-    //               Continue with Facebook
-    //             </a>
-    //           </form>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
   );
 };
 

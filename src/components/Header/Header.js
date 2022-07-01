@@ -75,7 +75,7 @@ useEffect(()=>{
                                                     <motion.a
                                                      className='text-textColorWhite'
                                                         whileTap={{ scale: 0.6 }}
-                                                        href='/dashboard'
+                                                        href='/add-car'
                                                     >
                                                        Drive with Us
                                                     </motion.a>
