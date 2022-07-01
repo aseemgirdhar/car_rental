@@ -3,9 +3,15 @@ import axios from "axios";
 import "./Login.sass";
 import { useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login.png";
+import Signup from "../signup/Signup";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [signup , showSignup] = useState(false);
+  const [role, setRole] = useState("");
+  const showSignupComponent = () =>{
+    showSignup(true)
+  }
   const navigate = useNavigate();
   const loginHandeler = async (e) => {
     e.preventDefault();
@@ -14,15 +20,27 @@ const Login = () => {
         "Content-type": "application/json",
       },
     };
-    const { data } = await axios.post(
-      "/userAuth/login",
-      {
-        email,
-        password,
-      },
-      config
-    );
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    if(role === 'User') {
+      const { data } = await axios.post(
+        "/userAuth/login",
+        {
+          email,
+          password,
+        },
+        config
+      );
+      localStorage.setItem("userInfo", JSON.stringify(data));
+    } else {
+      const { data } = await axios.post(
+        "/ownerAuth/login",
+        {
+          email,
+          password,
+        },
+        config
+      );
+      localStorage.setItem("userInfo", JSON.stringify(data));
+    }
     navigate("/dashboard");
   };
 
@@ -30,10 +48,11 @@ const Login = () => {
     <section className="h-screen">
       <div className="px-6 h-full text-gray-800">
         <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
-          <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
+          <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-4/12 lg:w-4/12 md:w-9/12 mb-12 md:mb-0">
             <img src={loginImg} className="w-full" alt="Sample image" />
           </div>
-          <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
+         
+        {signup ? <Signup /> :  <div className="xl:ml-20 xl:w-3/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0 ">
             <form onSubmit={loginHandeler}>
               <div className="flex flex-row items-center justify-center lg:justify-center ">
                 <p className="text-lg mb-0 mr-4">Sign in with</p>
@@ -80,6 +99,39 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+
+              <div className="mb-6 text-left">
+          <label>Login As</label>
+          <div class="flex justify-center">
+            <div class="mb-3 xl:w-96">
+              <select
+                class="form-select appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      mt-3
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="User" selected>
+                  User
+                </option>
+                <option value="Owner">Owner</option>
+              </select>
+            </div>
+          </div>
+        </div>
               <div className="flex justify-between items-center mb-6">
                 <div className="form-group form-check">
                   <input
@@ -108,7 +160,8 @@ const Login = () => {
                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                   Don't have an account?
                   <a
-                    href="#!"
+                    
+                    onClick={showSignupComponent}
                     className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
                   >
                     Register
@@ -116,7 +169,8 @@ const Login = () => {
                 </p>
               </div>
             </form>
-          </div>
+          </div>}
+          
         </div>
       </div>
     </section>
