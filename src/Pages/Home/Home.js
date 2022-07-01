@@ -1,12 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BookingBanner from "../../components/Booking-Banner/Booking-banner";
 import "./Home.sass";
-import {
-  TruckIcon,
-  CurrencyRupeeIcon,
-  SupportIcon,
-  PresentationChartLineIcon,
-} from "@heroicons/react/outline";
+
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
@@ -21,10 +16,10 @@ import {
 } from "@heroicons/react/solid";
 
 import "animate.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
-
   const [details, moreDetails] = useState(false);
   const [cardView, setCardView] = useState(false);
 
@@ -119,60 +114,22 @@ const Home = () => {
     return classes.filter(Boolean).join(" ");
   }
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [carList, setCarList] = useState([]);
+  const getCarLists = async () => {
+    await axios
+      .post("/user/getCars", { filter: {}, sort: {}, dates: {} })
 
+      .then((carList) => setCarList(carList.data));
+  };
 
-  
+  useEffect(() => {
+    getCarLists();
+  }, []);
   return (
     <>
-      <BookingBanner />
+      <BookingBanner setCarList={setCarList} />
 
-      <div className="welcome my-24"  data-aos="fade-up" data-aos-duration="1500" id='about'>
-        <h2 className="text-bg">WELCOME TO US</h2>
-        <h5> THE BEST SERVICES OUR COMPANY </h5>
-      </div>
-     
-        <div className="bg-white">
-          <div className="max-w-2xl max-h-xl mx-auto pb-24 px-4 grid items-start grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-18 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
-            <div className="about-left-section"  data-aos="flip-left"></div>
-
-            <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-              <div className="text-left why-us-section"  data-aos="fade-right" data-aos-duration="1500">
-                <TruckIcon className="text-bg" />
-                <strong>Variety of Car Brands</strong>
-                <p>
-                  Amorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                  vitae nibh nisl. Cras etitikis mauris egeth .
-                </p>
-              </div>
-              <div className="text-left why-us-section"  data-aos="fade-left" data-aos-duration="1500">
-                <CurrencyRupeeIcon className="text-bg" />
-                <strong>Best Rate guarantee</strong>
-                <p>
-                  Amorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                  vitae nibh nisl. Cras etitikis mauris egeth .
-                </p>
-              </div>
-              <div className="text-left why-us-section"  data-aos="fade-up-right" data-aos-duration="1500">
-                <SupportIcon className="text-bg" />
-                <strong>Awesome Support</strong>
-                <p>
-                  Amorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                  vitae nibh nisl. Cras etitikis mauris egeth .
-                </p>
-              </div>
-              <div className="text-left why-us-section"  data-aos="fade-up-left" data-aos-duration="1500" >
-                <PresentationChartLineIcon className="text-bg" />
-                <strong>Careful Activity</strong>
-                <p>
-                  Amorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                  vitae nibh nisl. Cras etitikis mauris egeth .
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-      <div className="bg-white" >
+      <div className="bg-white mt-10">
         <div>
           {/* Mobile filter dialog */}
           <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -350,7 +307,9 @@ const Home = () => {
                     <ViewListIcon className="w-5 h-5" aria-hidden="true" />
                   )}
                 </button>
-                <button data-aos="zoom-in"  data-aos-duration="1500"
+                <button
+                  data-aos="zoom-in"
+                  data-aos-duration="1500"
                   type="button"
                   className="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
                   onClick={() => setMobileFiltersOpen(true)}
@@ -361,7 +320,12 @@ const Home = () => {
               </div>
             </div>
 
-            <section aria-labelledby="products-heading" className="pt-6 pb-24" data-aos="zoom-in-up"  data-aos-duration="1500">
+            <section
+              aria-labelledby="products-heading"
+              className="pt-6 pb-24"
+              data-aos="zoom-in-up"
+              data-aos-duration="1500"
+            >
               <h2 id="products-heading" className="sr-only">
                 Products
               </h2>
@@ -441,106 +405,61 @@ const Home = () => {
                             : "grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8"
                         }`}
                       >
-                        <Link to='/details'>
-                        <div className="car-detail" data-aos="flip-left" 
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="1500">
-                          <div className="card-image">
-                            <img src={ProductImg} />
-                          </div>
-                          <div className="card-description bg-bg">
-                            <strong>
-                              Tata Tiago <span>Rs.200/h</span>
-                            </strong>
-                            {!cardView && (
-                              <a
-                                className="more-details"
-                                onClick={moreDetailsHandler}
-                              >
-                                More Details
-                              </a>
-                            )}
-                            {(details || cardView) && (
-                              <ul>
-                                <li>
-                                  <span> Gear Type </span> Automatic
-                                </li>
-                                <li>
-                                  <span> Fuel Type </span> CNG
-                                </li>
-                                <li>
-                                  <span> Seats </span> 5 Seats
-                                </li>
-                                <li>
-                                  <span> Model </span> 2018
-                                </li>
-                                <li>
-                                  <span> Color </span>{" "}
-                                  <div className="car-color">
-                                    <div className="tooltip">Car Color</div>
-                                    <span className="color-box"></span>
-                                  </div>
-                                </li>
-                              </ul>
-                            )}
+                        {carList.map((car) => {
+                          return(
+                          <Link to={`/getCar/${car._id}`} key={car._id}>
+                            <div
+                              className="car-detail"
+                              data-aos="flip-left"
+                              data-aos-easing="ease-out-cubic"
+                              data-aos-duration="1500"
+                            >
+                              <div className="card-image">
+                                <img src={ProductImg} />
+                              </div>
+                              <div className="card-description bg-bg">
+                                <strong>
+                                  {car.car_name} <span>Rs. {car.car_price_per_hour}/h</span>
+                                </strong>
+                                {!cardView && (
+                                  <a
+                                    className="more-details"
+                                    onClick={moreDetailsHandler}
+                                  >
+                                    More Details
+                                  </a>
+                                )}
+                                {(details || cardView) && (
+                                  <ul>
+                                    <li>
+                                      <span> Gear Type </span> {car.car_gear_type}
+                                    </li>
+                                    <li>
+                                      <span> Fuel Type </span> {car.car_fuel_type}
+                                    </li>
+                                    <li>
+                                      <span> Seats </span> {car.car_seats} Seats
+                                    </li>
+                                    <li>
+                                      <span> Model </span> {car.car_model}
+                                    </li>
+                                    <li>
+                                      <span> Color </span>{" "}
+                                      <div className="car-color">
+                                        <div className="tooltip">Car Color</div>
+                                        <span className="color-box" style={{background: `${car.car_color}`}}></span>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                )}
 
-                            <button class="bg-textColorWhite hover:text-textColorWhite hover:bg-cartNumBg text-headingColor font-bold py-2 px-4 rounded-full">
-                              Book Now
-                            </button>
-                          </div>
-                        </div>
-                        </Link>
-
-                        <div className="car-detail" data-aos="flip-left"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="1500">
-                          <div className="card-image">
-                            <img src={ProductImg} />
-                          </div>
-                          <div className="card-description bg-bg">
-                            <strong>
-                              Tata Tiago <span>Rs.200/h</span>
-                            </strong>
-                            {!cardView && (
-                              <a
-                                className="more-details"
-                                onClick={moreDetailsHandler}
-                              >
-                                More Details
-                              </a>
-                            )}
-                            {(details || cardView) && (
-                              <ul data-aos="fade-up" data-aos-duration="1500">
-                                <li>
-                                  <span> Gear Type </span> Automatic
-                                </li>
-                                <li>
-                                  <span> Fuel Type </span> CNG
-                                </li>
-                                <li>
-                                  <span> Seats </span> 5 Seats
-                                </li>
-                                <li>
-                                  <span> Model </span> 2018
-                                </li>
-                                <li>
-                                  <span> Color </span>{" "}
-                                  <div className="car-color">
-                                    <div className="tooltip">Car Color</div>
-                                    <span className="color-box"></span>
-                                  </div>
-                                </li>
-                              </ul>
-                            )}
-
-                            <button class="bg-textColorWhite hover:text-textColorWhite hover:bg-cartNumBg text-headingColor font-bold py-2 px-4 rounded-full">
-                              Book Now
-                            </button>
-                          </div>
-                        </div>
-
-                        <div>1</div>
-                        <div>1</div>
+                                <button class="bg-textColorWhite hover:text-textColorWhite hover:bg-cartNumBg text-headingColor font-bold py-2 px-4 rounded-full">
+                                  Book Now
+                                </button>
+                              </div>
+                            </div>
+                          </Link>)
+                        })}
                       </div>
                     </div>
                   </div>
@@ -550,24 +469,38 @@ const Home = () => {
           </main>
           <div className="flex items-center justify-center h-340 bg-fixed bg-center bg-cover custom-img ">
             <div className="grid grid-cols-4 gap-4">
-              <div className="customer-wrapper p-16" data-aos="zoom-in-down" data-aos-duration="1500">
-            
-                <h2 className="text-2xl text-bg font-bold rounded-sm" >250</h2>
+              <div
+                className="customer-wrapper p-16"
+                data-aos="zoom-in-down"
+                data-aos-duration="1500"
+              >
+                <h2 className="text-2xl text-bg font-bold rounded-sm">250</h2>
                 <h3>Available Cars</h3>
               </div>
-              <div className="customer-wrapper p-16"  data-aos="zoom-in-left" data-aos-duration="1500">
+              <div
+                className="customer-wrapper p-16"
+                data-aos="zoom-in-left"
+                data-aos-duration="1500"
+              >
                 <h2 className="text-2xl text-bg font-bold rounded-sm">25845</h2>
                 <h3>Happy Customers</h3>
               </div>
-              <div className="customer-wrapper p-16" data-aos="zoom-in-right" data-aos-duration="1500">
+              <div
+                className="customer-wrapper p-16"
+                data-aos="zoom-in-right"
+                data-aos-duration="1500"
+              >
                 <h2 className="text-2xl text-bg font-bold rounded-sm">245</h2>
                 <h3>Drivers</h3>
               </div>
-              <div className="customer-wrapper p-16" data-aos="zoom-out" data-aos-duration="1500">
-                <h2 className="text-2xl text-bg font-bold rounded-sm" >525</h2>
+              <div
+                className="customer-wrapper p-16"
+                data-aos="zoom-out"
+                data-aos-duration="1500"
+              >
+                <h2 className="text-2xl text-bg font-bold rounded-sm">525</h2>
                 <h3>Days in Business</h3>
               </div>
-              
             </div>
           </div>
         </div>

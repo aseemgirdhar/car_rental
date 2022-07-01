@@ -1,5 +1,7 @@
 module.exports = {
-  content: ["./src/**/*.{html,js,sass}"],
+  content: ["./src/**/*.{html,js,sass}", './node_modules/tw-elements/dist/js/**/*.js'],
+  
+
   theme: {
     extend: {
       width: {
@@ -53,5 +55,8 @@ module.exports = {
 
     },
   },
-  plugins: [],
+  plugins: [ 
+    require('tw-elements/dist/plugin'),
+    
+  ],
 }

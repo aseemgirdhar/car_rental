@@ -1,10 +1,11 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Logo from '../../assets/images/logo.png'
 import { motion } from "framer-motion";
 import {Link} from 'react-router-dom';
+import './Header.sass'
 const user = {
     name: 'Tom Cook',
     email: 'tom@example.com',
@@ -27,9 +28,17 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
+
 const Header = () => {
+    
+const getLocalData =  localStorage.getItem('userInfo');
+console.log(getLocalData)
+useEffect(()=>{
+
+}, [getLocalData])
     return (
         <>
+        {getLocalData ? 
             <div className="min-h-full">
                 <Disclosure as="nav" className="bg-gray-800">
                     {({ open }) => (
@@ -199,6 +208,7 @@ const Header = () => {
 
 
             </div>
+           : '' }
         </>
     )
 }
