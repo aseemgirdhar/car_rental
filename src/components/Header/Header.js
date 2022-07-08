@@ -32,7 +32,7 @@ function classNames(...classes) {
 const Header = () => {
     
 const getLocalData =  localStorage.getItem('userInfo');
-console.log(getLocalData)
+
 useEffect(()=>{
 
 }, [getLocalData])

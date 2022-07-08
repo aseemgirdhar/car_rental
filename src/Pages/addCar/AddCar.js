@@ -46,134 +46,233 @@ const AddCar = () => {
     <section className="h-screen">
     <div className="px-6 h-full text-gray-800">
       <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
-        <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-4/12 lg:w-4/12 md:w-9/12 mb-12 md:mb-0">
+        {/* <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-4/12 lg:w-4/12 md:w-9/12 mb-12 md:mb-0">
           <img src={loginImg} className="w-full" alt="Sample image" />
-        </div>
-       
-      <div className="xl:ml-20 xl:w-3/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0 ">
-          <form onSubmit={addCar}>
-          
-            {/* Car name */}
-            <div className="mb-6">
-              <input
+        </div> */}
+
+<form className="w-full max-w-lg" onSubmit={addCar}>
+  <div className="flex flex-wrap -mx-3 mb-6">
+    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-center">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block  mb-3 px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Brand Or Name"
                 onChange={(e) => setCarName(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
+      <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full mb-3 px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Modal"
                 onChange={(e) => setCarModel(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full mb-3 px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Color"
                 onChange={(e) => setCarColor(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full mb-3 px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Number"
                 onChange={(e) => setCarNumber(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
-                type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Car Type"
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <select
+                class="form-select appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      mb-3
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
                 onChange={(e) => setCarType(e.target.value)}
-              />
-            </div>
+              >
+                <option selected>
+                Select Car Type
+                </option>
+                <option value="Hatchback" >
+                Hatchback
+                </option>
+                <option value="Suv">Suv</option>
+                <option value="Sedan">Sedan</option>
+              </select>
 
-            <div className="mb-6">
-              <input
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full px-4 mb-3 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Image"
                 onChange={(e) => setCarImage(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full px-4 mb-3 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Price Per Hour"
                 onChange={(e) => setCarPrice(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full px-4 py-2 mb-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Driven"
                 onChange={(e) => setCarDriven(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    {/* <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full px-4 py-2 mb-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Fuel Type"
                 onChange={(e) => setCarFuel(e.target.value)}
-              />
-            </div>
+              /> */}
 
-            <div className="mb-6">
-              <input
+<select
+                class="form-select appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      mb-3
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
+                onChange={(e) => setCarFuel(e.target.value)}
+              >
+                <option selected>
+                Select Car Fuel Type
+                </option>
+                <option value="CNG" >
+                CNG
+                </option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+              </select>
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full px-4 py-2 mb-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Seats"
                 onChange={(e) => setCarSeat(e.target.value)}
               />
-            </div>
-
-            <div className="mb-6">
-              <input
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    {/* <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full px-4 py-2 mb-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Tyre Type"
                 onChange={(e) => setCarTyre(e.target.value)}
-              />
-            </div>
+              /> */}
 
-            <div className="mb-6">
-              <input
+<select
+                class="form-select appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      mb-3
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
+                onChange={(e) => setCarTyre(e.target.value)}
+              >
+                <option selected>
+                Select Car Tyre Type
+                </option>
+                <option value="Tubeless" >
+                Tubeless
+                </option>
+                <option value="Tube">Tube</option>
+                
+              </select>
+    </div>
+    <div className="w-full md:w-1/2 px-3">
+    {/* <input
                 type="text"
-                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full px-4 py-2 mb-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Car Gear Type"
                 onChange={(e) => setCarGearType(e.target.value)}
-              />
-            </div>
-
-            <div className="text-center lg:text-left">
-          <button
+              /> */}
+            <select
+                class="form-select appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      mb-3
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
+                onChange={(e) => setCarGearType(e.target.value)}
+              >
+                <option selected>
+                Select Car Gear Type
+                </option>
+                <option value="Manual" >
+                Manual
+                </option>
+                <option value="Automatic">Automatic</option>
+                
+              </select>
+    </div>
+    <button
             type="submit"
             className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
           >
             Signup
           </button>
-          </div>
-           
-          </form>
-        </div>
-        
+  </div>
+</form>
+
+       
+    
       </div>
     </div>
   </section>

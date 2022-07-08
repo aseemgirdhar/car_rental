@@ -429,29 +429,7 @@ const Home = () => {
                                     More Details
                                   </a>
                                 )}
-                                {(details || cardView) && (
-                                  <ul>
-                                    <li>
-                                      <span> Gear Type </span> {car.car_gear_type}
-                                    </li>
-                                    <li>
-                                      <span> Fuel Type </span> {car.car_fuel_type}
-                                    </li>
-                                    <li>
-                                      <span> Seats </span> {car.car_seats} Seats
-                                    </li>
-                                    <li>
-                                      <span> Model </span> {car.car_model}
-                                    </li>
-                                    <li>
-                                      <span> Color </span>{" "}
-                                      <div className="car-color">
-                                        <div className="tooltip">Car Color</div>
-                                        <span className="color-box" style={{background: `${car.car_color}`}}></span>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                )}
+                                
 
                                 <button class="bg-textColorWhite hover:text-textColorWhite hover:bg-cartNumBg text-headingColor font-bold py-2 px-4 rounded-full">
                                   Book Now
@@ -471,32 +449,28 @@ const Home = () => {
             <div className="grid grid-cols-4 gap-4">
               <div
                 className="customer-wrapper p-16"
-                data-aos="zoom-in-down"
-                data-aos-duration="1500"
+                
               >
                 <h2 className="text-2xl text-bg font-bold rounded-sm">250</h2>
                 <h3>Available Cars</h3>
               </div>
               <div
                 className="customer-wrapper p-16"
-                data-aos="zoom-in-left"
-                data-aos-duration="1500"
+                
               >
                 <h2 className="text-2xl text-bg font-bold rounded-sm">25845</h2>
                 <h3>Happy Customers</h3>
               </div>
               <div
                 className="customer-wrapper p-16"
-                data-aos="zoom-in-right"
-                data-aos-duration="1500"
+              
               >
                 <h2 className="text-2xl text-bg font-bold rounded-sm">245</h2>
                 <h3>Drivers</h3>
               </div>
               <div
                 className="customer-wrapper p-16"
-                data-aos="zoom-out"
-                data-aos-duration="1500"
+                
               >
                 <h2 className="text-2xl text-bg font-bold rounded-sm">525</h2>
                 <h3>Days in Business</h3>
