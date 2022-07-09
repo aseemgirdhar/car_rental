@@ -1,10 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { PencilAltIcon, UserIcon, XIcon } from "@heroicons/react/outline";
 import "./Profile.sass";
-const Profile = () => {
-  const [showModal, setShowModal] = React.useState(false);
+import { Navigate } from "react-router-dom";
+const Profile = ({user, setUser}) => {
+
+
+  console.log({user})
+  // const user = JSON.parse(localStorage.getItem('userInfo'))
+  // console.log(user.personalDetails)
+  
+  const [showModal, setShowModal] = React.useState(user.personalDetails.a=='1'?true:false);
+  
+  //modaldata 
+  const [fname, setFname] = useState(user.personalDetails.fname?user.personalDetails.fname:'')
+  const [lname, setLname]= useState(user.personalDetails.lname?user.personalDetails.lname:'')
+  const [dob, setDob] = useState(user.personalDetails.dob?user.personalDetails.dob:'')
+  const [mob, setMob] = useState(user.personalDetails.mob?user.personalDetails.mob:'')
+  const [gender, setGender] = useState(user.personalDetails.gender?user.personalDetails.gender:'')
+  const [address, setAddress]= useState(user.personalDetails.address?user.personalDetails.address:'')
+  const [permanentAddress, setPaddress] = useState(user.personalDetails.permanentAddress?user.personalDetails.permanentAddress:'')
+  const [state, setState] = useState(user.personalDetails.state?user.personalDetails.state:'')
+  const [city, setCity] = useState(user.personalDetails.city?user.personalDetails.city:'')
+  const [zip, setZip]= useState(user.personalDetails.zip?user.personalDetails.zip:'')
+  
+
+
+  const savePersonalData = async() => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        
+      },
+    };
+    const { data } = await axios.post(
+      "/user/editUser",
+      {
+        _id: user._id,
+        personalDetails: {
+          fname,lname,dob,gender,address, permanentAddress, state, city, zip
+        }
+      },
+      config
+    );
+    localStorage.setItem("userInfo", JSON.stringify(data));
+  }
   return (
-    <div className="bg-gray-100  top-10">
+  
+   <div className="bg-gray-100  top-10">
+    {user? '': <Navigate to='/login'/>}
+    
       {showModal ? (
         <>
           <div className="profile-edit-modal justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -39,6 +84,8 @@ const Profile = () => {
                           id="grid-first-name"
                           type="text"
                           placeholder="Jane"
+                          value={fname}
+                          onChange={e => setFname(e.target.value)}
                         />
                         
                       </div>
@@ -54,10 +101,12 @@ const Profile = () => {
                           id="grid-last-name"
                           type="text"
                           placeholder="Doe"
+                          value={lname}
+                          onChange={e => setLname(e.target.value)}
                         />
                       </div>
 
-                      <div className="w-full md:w-1/2 px-3  mb-6">
+                      {/* <div className="w-full md:w-1/2 px-3  mb-6">
                         <label
                           className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                           htmlFor="grid-number"
@@ -70,7 +119,7 @@ const Profile = () => {
                           type="number"
                           placeholder="Doe"
                         />
-                      </div>
+                      </div> */}
 
 
                       <div className="w-full md:w-1/2 px-3  mb-6">
@@ -84,9 +133,12 @@ const Profile = () => {
                           <select
                             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-state"
+                            value={gender}
+                            onChange={e => setGender(e.target.value)}
                           >
-                            <option>Male</option>
-                            <option>Female</option>
+                            <option value=''>Select Gender</option>
+                            <option value='Male'>Male</option>
+                            <option value='Female'>Female</option>
                           </select>
                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg
@@ -101,7 +153,7 @@ const Profile = () => {
                       </div>
 
 
-                      <div className="w-full md:w-1/2 px-3  mb-6">
+                      {/* <div className="w-full md:w-1/2 px-3  mb-6">
                         <label
                           className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                           htmlFor="grid-email"
@@ -114,7 +166,7 @@ const Profile = () => {
                           type="email"
                           placeholder="name@gmail.com"
                         />
-                      </div>
+                      </div> */}
 
                       <div className="w-full md:w-1/2 px-3  mb-6">
                         <label
@@ -128,6 +180,8 @@ const Profile = () => {
                           id="grid-dob"
                           type="text"
                           placeholder="18-06-1991"
+                          value={dob}
+                          onChange={e => setDob(e.target.value)}
                         />
                       </div>
 
@@ -143,6 +197,8 @@ const Profile = () => {
                           id="grid-Address"
                           type="text"
                           placeholder="Current Address"
+                          value={address}
+                            onChange={e => setAddress(e.target.value)}
                         />
                       </div>
 
@@ -158,6 +214,8 @@ const Profile = () => {
                           id="grid-pAddress"
                           type="text"
                           placeholder="Permanent Address"
+                          value={permanentAddress}
+                          onChange={e => setPaddress(e.target.value)}
                         />
                       </div>
                     </div>
@@ -175,6 +233,8 @@ const Profile = () => {
                           id="grid-city"
                           type="text"
                           placeholder="Albuquerque"
+                          value={city}
+                          onChange={e => setCity(e.target.value)}
                         />
                       </div>
 
@@ -190,6 +250,8 @@ const Profile = () => {
                           id="grid-State"
                           type="text"
                           placeholder="State"
+                          value={state}
+                          onChange={e => setState(e.target.value)}
                         />
                       </div>
                       
@@ -205,6 +267,8 @@ const Profile = () => {
                           id="grid-zip"
                           type="text"
                           placeholder={90210}
+                          value={zip}
+                          onChange={e => setZip(e.target.value)}
                         />
                       </div>
                     </div>
@@ -222,7 +286,9 @@ const Profile = () => {
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      savePersonalData()
+                      setShowModal(false)}}
                   >
                     Save Changes
                   </button>
@@ -307,15 +373,15 @@ const Profile = () => {
                 <div className="grid md:grid-cols-2 text-sm">
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">First Name</div>
-                    <div className="px-4 py-2">Jane</div>
+                    <div className="px-4 py-2">{user.personalDetails?.fname}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Last Name</div>
-                    <div className="px-4 py-2">Doe</div>
+                    <div className="px-4 py-2">{user.personalDetails?.lname}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Gender</div>
-                    <div className="px-4 py-2">Female</div>
+                    <div className="px-4 py-2">{user.personalDetails?.gender}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Contact No.</div>
@@ -326,7 +392,7 @@ const Profile = () => {
                       Current Address
                     </div>
                     <div className="px-4 py-2">
-                      Beech Creek, PA, Pennsylvania
+                    {user.personalDetails?.address}
                     </div>
                   </div>
                   <div className="grid grid-cols-2">
@@ -334,7 +400,7 @@ const Profile = () => {
                       Permanant Address
                     </div>
                     <div className="px-4 py-2">
-                      Arlington Heights, IL, Illinois
+                    {user.personalDetails?.permanentAddress}
                     </div>
                   </div>
                   <div className="grid grid-cols-2">
@@ -350,7 +416,7 @@ const Profile = () => {
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">DOB</div>
-                    <div className="px-4 py-2">Feb 06, 1998</div>
+                    <div className="px-4 py-2">{user.personalDetails?.dob}</div>
                   </div>
                 </div>
               </div>
@@ -449,6 +515,7 @@ const Profile = () => {
       </div>
     </div>
   );
+
 };
 
 export default Profile;

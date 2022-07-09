@@ -19,7 +19,7 @@ import "animate.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Home = () => {
+const Home = ({user}) => {
   const [details, moreDetails] = useState(false);
   const [cardView, setCardView] = useState(false);
 
@@ -114,6 +114,7 @@ const Home = () => {
   useEffect(() => {
     getCarLists();
   }, [filtersSelected]);
+  console.log(user)
   return (
     <>
       <BookingBanner setCarList={setCarList} />

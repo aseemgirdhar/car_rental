@@ -16,24 +16,26 @@ import AddCar from "./Pages/addCar/AddCar";
 const LazyHome = React.lazy(() => import ("./Pages/Home/Home"));
 
 function App() {
-
-
+  const localUser = JSON.parse(localStorage.getItem('userInfo'))
+  const sessionUser = JSON.parse(sessionStorage.getItem('userInfo'))
+  const [user, setUser] = React.useState(localUser?localUser:sessionUser?sessionUser:null)
   return (
     <div className="App">
       <main>
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<React.Suspense fallback='Loading...'><LazyHome /></React.Suspense>} />
             <Route path="/about" element={<About />} />
             <Route path="/getCar/:id" element={<CarDetails />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/dashboard" element={<React.Suspense fallback='Loading...'><LazyHome /></React.Suspense>} />
+            <Route path="/profile" element={<Profile user={user} setUser={setUser}/>} />
+            <Route path="/dashboard" element={<React.Suspense fallback='Loading...'><LazyHome user={user}/></React.Suspense>} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/team" element={<Team />} />
-            <Route path="/car-list" element={<CarList />} />
+            <Route path="/car-list" element={<CarList user={user}/>} />
             <Route path="/add-car" element={<AddCar />} />
+            <Route path="/login" element={<Login setUser={setUser}/>} />
           </Routes>
           <Footer />
         </Router>
