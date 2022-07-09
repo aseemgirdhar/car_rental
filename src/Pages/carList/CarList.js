@@ -76,7 +76,7 @@ const CarList = ({ user }) => {
         let newCarList = carList
         newCarList[editIndex]= data
         setCarList([...newCarList])
-
+       
   }
   useEffect(() => {
     getAllOwnedCars();
@@ -122,7 +122,8 @@ const CarList = ({ user }) => {
                         type="text"
                         className="form-control block w-full mb-3 px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Car Modal"
-                        onChange={(e) => setCarModel(e.target.value)}
+                        value={activeCar?.car_model}
+                        onChange={(e) => setActiveCar({...activeCar, car_model:e.target.value})}
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -130,7 +131,8 @@ const CarList = ({ user }) => {
                         type="text"
                         className="form-control block w-full mb-3 px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Car Color"
-                        onChange={(e) => setCarColor(e.target.value)}
+                        value={activeCar?.car_name}
+                        onChange={(e) => setActiveCar({...activeCar, car_name:e.target.value})}
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -138,7 +140,8 @@ const CarList = ({ user }) => {
                         type="text"
                         className="form-control block w-full mb-3 px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Car Number"
-                        onChange={(e) => setCarNumber(e.target.value)}
+                        value={activeCar?.car_number}
+                        onChange={(e) => setActiveCar({...activeCar, car_number:e.target.value})}
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -160,7 +163,8 @@ const CarList = ({ user }) => {
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         aria-label="Default select example"
-                        onChange={(e) => setCarType(e.target.value)}
+                        value={activeCar?.car_type}
+                        onChange={(e) => setActiveCar({...activeCar, car_type:e.target.value})}
                       >
                         <option selected>Select Car Type</option>
                         <option value="Hatchback">Hatchback</option>
@@ -173,7 +177,8 @@ const CarList = ({ user }) => {
                         type="text"
                         className="form-control block w-full px-4 mb-3 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Car Image"
-                        onChange={(e) => setCarImage(e.target.value)}
+                        value={activeCar?.car_image}
+                        onChange={(e) => setActiveCar({...activeCar, car_image:e.target.value})}
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -181,7 +186,8 @@ const CarList = ({ user }) => {
                         type="text"
                         className="form-control block w-full px-4 mb-3 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Car Price Per Hour"
-                        onChange={(e) => setCarPrice(e.target.value)}
+                        value={activeCar?.car_price_per_hour}
+                        onChange={(e) => setActiveCar({...activeCar, car_price_per_hour:e.target.value})}
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -189,7 +195,8 @@ const CarList = ({ user }) => {
                         type="text"
                         className="form-control block w-full px-4 py-2 mb-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Car Driven"
-                        onChange={(e) => setCarDriven(e.target.value)}
+                        value={activeCar?.car_driven}
+                        onChange={(e) => setActiveCar({...activeCar, car_driven:e.target.value})}
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -218,7 +225,8 @@ const CarList = ({ user }) => {
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         aria-label="Default select example"
-                        onChange={(e) => setCarFuel(e.target.value)}
+                        value={activeCar?.car_fuel_type}
+                        onChange={(e) => setActiveCar({...activeCar, car_fuel_type:e.target.value})}
                       >
                         <option selected>Select Car Fuel Type</option>
                         <option value="CNG">CNG</option>
@@ -231,7 +239,8 @@ const CarList = ({ user }) => {
                         type="text"
                         className="form-control block w-full px-4 py-2 mb-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Car Seats"
-                        onChange={(e) => setCarSeat(e.target.value)}
+                        value={activeCar?.car_seats}
+                        onChange={(e) => setActiveCar({...activeCar, car_seats:e.target.value})}
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -260,7 +269,8 @@ const CarList = ({ user }) => {
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         aria-label="Default select example"
-                        onChange={(e) => setCarTyre(e.target.value)}
+                        value={activeCar?.car_tyre_type}
+                        onChange={(e) => setActiveCar({...activeCar, car_tyre_type:e.target.value})}
                       >
                         <option selected>Select Car Tyre Type</option>
                         <option value="Tubeless">Tubeless</option>
@@ -292,7 +302,8 @@ const CarList = ({ user }) => {
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         aria-label="Default select example"
-                        onChange={(e) => setCarGearType(e.target.value)}
+                        value={activeCar?.car_gear_type}
+                        onChange={(e) => setActiveCar({...activeCar, car_gear_type:e.target.value})}
                       >
                         <option selected>Select Car Gear Type</option>
                         <option value="Manual">Manual</option>
