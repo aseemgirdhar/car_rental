@@ -23,6 +23,8 @@ const Home = () => {
   const [details, moreDetails] = useState(false);
   const [cardView, setCardView] = useState(false);
 
+  const [filtersSelected, setfiltersSelected] = useState({})
+  const [sortSelected, setSortSelected] = useState({})
   const getCardView = () => {
     setCardView((cardView) => !cardView);
   };
@@ -30,20 +32,20 @@ const Home = () => {
     moreDetails((details) => !details);
   };
   const sortOptions = [
-    { name: "Most Popular", href: "#", current: true },
-    { name: "Best Rating", href: "#", current: false },
-    { name: "Newest", href: "#", current: false },
+    // { name: "Most Popular", href: "#", current: true },
+    // { name: "Best Rating", href: "#", current: false },
+    // { name: "Newest", href: "#", current: false },
     { name: "Price: Low to High", href: "#", current: false },
     { name: "Price: High to Low", href: "#", current: false },
   ];
 
   const filters = [
     {
-      id: "name",
+      id: "car_model",
       name: "Name",
       options: [
         { value: "Aston Martin", label: "Aston Martin", checked: false },
-        { value: "Audi", label: "Audi", checked: true },
+        { value: "Audi", label: "Audi", checked: false },
         { value: "BMW", label: "BMW", checked: false },
         { value: "Cadillac", label: "Cadillac", checked: false },
         { value: "Datsun", label: "Datsun", checked: false },
@@ -51,61 +53,48 @@ const Home = () => {
         { value: "Volkswagen", label: "Volkswagen", checked: false },
       ],
     },
+  
+    
     {
-      id: "color",
-      name: "Color",
-      options: [
-        { value: "white", label: "White", checked: false },
-        { value: "beige", label: "Beige", checked: false },
-        { value: "blue", label: "Blue", checked: true },
-        { value: "brown", label: "Brown", checked: false },
-        { value: "green", label: "Green", checked: false },
-        { value: "purple", label: "Purple", checked: false },
-      ],
-    },
-    {
-      id: "model",
-      name: "Model",
-      options: [
-        { value: "2018", label: "2018", checked: false },
-        { value: "2019", label: "2019", checked: false },
-        { value: "2020", label: "2020", checked: true },
-        { value: "2021", label: "2021", checked: false },
-        { value: "2022", label: "2022", checked: false },
-      ],
-    },
-    {
-      id: "fuel",
+      id: "car_fuel_type",
       name: "Fuel Type",
       options: [
         { value: "Petrol", label: "Petrol", checked: false },
         { value: "Deisel", label: "Deisel", checked: false },
-        { value: "CNG", label: "CNG", checked: true },
+        { value: "CNG", label: "CNG", checked: false },
       ],
     },
     {
-      id: "type",
+      id: "car_type",
       name: "Car Type",
       options: [
         { value: "SUV", label: "SUV", checked: false },
-        { value: "Hatchback", label: "Hatchback", checked: true },
+        { value: "Hatchback", label: "Hatchback", checked: false },
         { value: "Sedan", label: "Sedan", checked: false },
       ],
     },
     {
-      id: "gear",
+      id: "car_gear_type",
       name: "Gear Type",
       options: [
         { value: "Automatic", label: "Automatic", checked: false },
-        { value: "Manual", label: "Manual", checked: true },
+        { value: "Manual", label: "Manual", checked: false },
       ],
     },
     {
-      id: "seat",
+      id: "car_seats",
       name: "Car Seats",
       options: [
         { value: "5", label: "5", checked: false },
-        { value: "8", label: "8", checked: true },
+        { value: "8", label: "8", checked: false },
+      ],
+    },
+    {
+      id: "car_tyre_type",
+      name: "Car Tyre Type",
+      options: [
+        { value: "on-Road", label: "on-Road", checked: false },
+        { value: "Off-Road", label: "Off-Road", checked: false },
       ],
     },
   ];
@@ -117,20 +106,20 @@ const Home = () => {
   const [carList, setCarList] = useState([]);
   const getCarLists = async () => {
     await axios
-      .post("/user/getCars", { filter: {}, sort: {}, dates: {} })
+      .post("/user/getCars", { filter: filtersSelected, sort: {}, dates: {} })
 
       .then((carList) => setCarList(carList.data));
   };
 
   useEffect(() => {
     getCarLists();
-  }, []);
+  }, [filtersSelected]);
   return (
     <>
       <BookingBanner setCarList={setCarList} />
 
       <div className="bg-white mt-10">
-        <div>
+        <div id="CarShow">
           {/* Mobile filter dialog */}
           <Transition.Root show={mobileFiltersOpen} as={Fragment}>
             <Dialog
@@ -184,6 +173,7 @@ const Home = () => {
                           as="div"
                           key={section.id}
                           className="border-t border-gray-200 px-4 py-6"
+                          
                         >
                           {({ open }) => (
                             <>
@@ -192,13 +182,24 @@ const Home = () => {
                                   <span className="font-medium text-gray-900">
                                     {section.name}
                                   </span>
-                                  <span className="ml-6 flex items-center">
+                                  <span className="ml-6 flex items-center"
+                                   >
                                     {open ? (
                                       <MinusSmIcon
                                         className="h-5 w-5"
                                         aria-hidden="true"
+                                        // onClick={()=>{
+                                        
+                                        //   let filterTemp = filtersSelected
+                                        //   delete filterTemp[section.id]
+                                        //   setfiltersSelected({...filterTemp})
+                                        // }}
                                       />
-                                    ) : (
+                                    ) : 
+                                     
+                                       
+                                      
+                                    (
                                       <PlusSmIcon
                                         className="h-5 w-5"
                                         aria-hidden="true"
@@ -216,10 +217,8 @@ const Home = () => {
                                     >
                                       <input
                                         id={`filter-mobile-${section.id}-${optionIdx}`}
-                                        name={`${section.id}[]`}
-                                        defaultValue={option.value}
-                                        type="checkbox"
-                                        defaultChecked={option.checked}
+                                        name={`${section.id}`}
+                                        type="radio"
                                         className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                                       />
                                       <label
@@ -372,10 +371,22 @@ const Home = () => {
                                 >
                                   <input
                                     id={`filter-${section.id}-${optionIdx}`}
-                                    name={`${section.id}[]`}
+                                    name={`${section.id}`}
                                     defaultValue={option.value}
-                                    type="checkbox"
+                                    type="radio"
                                     defaultChecked={option.checked}
+                                    onChange={(e)=>{
+                                      console.log(e.target.value)
+                                      let filterTemp = filtersSelected
+                                      let value = e.target.value
+                                      if(typeof value === 'string'){
+                                        value = value.toLowerCase()
+
+                                      }
+                                      filterTemp[e.target.name] = value
+                                      console.log(filterTemp)
+                                      setfiltersSelected({...filterTemp})
+                                    }}
                                     className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                                   />
                                   <label

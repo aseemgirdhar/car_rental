@@ -13,17 +13,23 @@ const BookingBanner = (props) => {
   // const [dropTime, setDropTime] = useState(new Date());
 
   
-  const carBooking = async () => {
+  const carBooking = async (e) => {
+    e.preventDefault()
+    console.log('here', value, value1)
+    //let toTime = value1.getTime() + 5*60*60*1000 + 30*60*1000
+    
    await axios.post('/user/getCars', { filter: {}, sort: {}, dates: {  
-    to_time: value,
-   from_time: value1} 
+    to_time: value1 ,
+   from_time: value} 
   }).then(data => props.setCarList(data.data));
   }
   useEffect(()=>{
    
   }, [])
+  
   return (
     <>
+     
       <div className="banner-wrapper  ">
         <div className="grid gap-6 mb-6 lg:grid-cols-2">
           <div className="rate-availbility h-max w-4/5 m-auto my-8 bg-white rounded-md p-10  mb-8">
@@ -40,7 +46,7 @@ const BookingBanner = (props) => {
                     type="text"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     placeholder="Pickup Location"
-                    required
+                    
                   />
                 </div>
               </div>
@@ -53,7 +59,7 @@ const BookingBanner = (props) => {
                     onChange={onChange}
                     value={value}
                     className="dark:bg-gray-700 text-sm rounded-lg block w-full p-2.5 focus:border-none text-left pl-3"
-                    
+                    format="dd-MM-y h:mm a"
                     minDate={new Date()}
                   />
                 </div>
@@ -65,16 +71,18 @@ const BookingBanner = (props) => {
                     onChange={onChange1}
                     value={value1}
                     className="dark:bg-gray-700 text-sm rounded-lg block w-full p-2.5 focus:border-none text-left pl-3"
-                      
-                    minDate={new Date()}
+                    format="dd-MM-y h:mm a"  
+                    minDate={value}
                   />
                 </div>
                
               </div>
+             
 
               <button onClick={carBooking} class="bg-bg hover:text-textColorWhite hover:bg-cartNumBg text-headingColor font-bold py-2 px-4 rounded-full">
                 Find Car
               </button>
+             
             </form>
           </div>
 

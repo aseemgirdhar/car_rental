@@ -38,7 +38,7 @@ useEffect(()=>{
 }, [getLocalData])
     return (
         <>
-        {getLocalData ? 
+        {
             <div className="min-h-full">
                 <Disclosure as="nav" className="bg-gray-800">
                     {({ open }) => (
@@ -208,7 +208,7 @@ useEffect(()=>{
 
 
             </div>
-           : '' }
+          }
         </>
     )
 }
