@@ -4,10 +4,10 @@ import "./Profile.sass";
 const Profile = () => {
   const [showModal, setShowModal] = React.useState(false);
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100  top-10">
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="profile-edit-modal justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -281,7 +281,7 @@ const Profile = () => {
             {/* End of profile card */}
           </div>
           {/* Right Side */}
-          <div className="w-full md:w-9/12 mx-2 h-64">
+          <div className="w-full md:w-9/12 mx-2">
             {/* Profile tab */}
             {/* About Section */}
             <div className="bg-white p-3 shadow-sm rounded-sm text-left">
