@@ -8,7 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signup , showSignup] = useState(false);
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("User");
   const showSignupComponent = () =>{
     showSignup(true)
   }
@@ -30,7 +30,7 @@ const Login = () => {
         },
         config
       );
-      localStorage.setItem("userInfo", JSON.stringify(data));
+     localStorage.setItem("userInfo", JSON.stringify(data));
     } else {
       const { data } = await axios.post(
         "/ownerAuth/login",
@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <section className="h-screen">
+    <section className="my-10">
       <div className="px-6 h-full text-gray-800">
         <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
           <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-4/12 lg:w-4/12 md:w-9/12 mb-12 md:mb-0">
