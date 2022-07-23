@@ -117,6 +117,7 @@ const Home = ({user}) => {
   console.log(user)
   return (
     <>
+    
       <BookingBanner setCarList={setCarList} />
 
       <div className="bg-white mt-10">

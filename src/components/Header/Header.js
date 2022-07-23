@@ -32,7 +32,7 @@ function classNames(...classes) {
 const Header = ({user}) => {
     
    
-    console.log({user})
+    console
     return (
         <>
         {

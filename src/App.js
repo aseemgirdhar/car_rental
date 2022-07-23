@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
+=======
+import React , {createContext, useEffect, useState} from "react";
+>>>>>>> d1fdfd0882464d95b77eb1ac8400867ed558399a
 import "./App.css";
 import Header from "./components/Header/Header";
 // import Home from "./Pages/Home/Home";
@@ -14,6 +18,8 @@ import CarList from "./Pages/carList/CarList";
 import About from "./Pages/About/About";
 import AddCar from "./Pages/addCar/AddCar";
 const LazyHome = React.lazy(() => import ("./Pages/Home/Home"));
+const data = createContext();
+
 
 function App() {
   const localUser = JSON.parse(localStorage.getItem('userInfo'))
@@ -27,9 +33,16 @@ function App() {
 
   return (
     <div className="App">
+      
       <main>
         <Router>
+<<<<<<< HEAD
           <Header user={user}/>
+=======
+        
+            <Header />
+         
+>>>>>>> d1fdfd0882464d95b77eb1ac8400867ed558399a
           <Routes>
             <Route path="/" element={<React.Suspense fallback='Loading...'><LazyHome /></React.Suspense>} />
             <Route path="/about" element={<About />} />
@@ -51,3 +64,4 @@ function App() {
 }
 
 export default App;
+export {data};
