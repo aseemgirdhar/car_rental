@@ -6,7 +6,7 @@ import Logo from '../../assets/images/logo.png'
 import { motion } from "framer-motion";
 import {Link} from 'react-router-dom';
 import './Header.sass'
-const user = {
+const userMock = {
     name: 'Tom Cook',
     email: 'tom@example.com',
     imageUrl:
@@ -29,13 +29,10 @@ function classNames(...classes) {
 }
 
 
-const Header = () => {
+const Header = ({user}) => {
     
-const getLocalData =  localStorage.getItem('userInfo');
-
-useEffect(()=>{
-
-}, [getLocalData])
+   
+    console.log({user})
     return (
         <>
         {
@@ -71,14 +68,16 @@ useEffect(()=>{
                                                     >
                                                        Our Team
                                                     </motion.a>
-
-                                                    <motion.a
-                                                     className='text-textColorWhite'
-                                                        whileTap={{ scale: 0.6 }}
-                                                        href='/add-car'
-                                                    >
-                                                       Drive with Us
-                                                    </motion.a>
+                                                    {
+                                                        user?.role ==='Owner'?(<motion.a
+                                                            className='text-textColorWhite'
+                                                               whileTap={{ scale: 0.6 }}
+                                                               href='/add-car'
+                                                           >
+                                                              Drive with Us
+                                                           </motion.a>):null
+                                                    }
+                                                    
 
                                                     <motion.a
                                                      className='text-textColorWhite'
@@ -107,7 +106,7 @@ useEffect(()=>{
                                                 <div>
                                                     <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                                                         <span className="sr-only">Open user menu</span>
-                                                        <motion.img whileTap={{ scale: 0.6 }} className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                                                        <motion.img whileTap={{ scale: 0.6 }} className="h-8 w-8 rounded-full" src={userMock?.imageUrl} alt="" />
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition
@@ -174,11 +173,11 @@ useEffect(()=>{
                                 <div className="pt-4 pb-3 border-t border-gray-700">
                                     <div className="flex items-center px-5">
                                         <div className="flex-shrink-0">
-                                            <motion.img whileTap={{ scale: 0.6 }} className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                                            <motion.img whileTap={{ scale: 0.6 }} className="h-10 w-10 rounded-full" src={userMock?.imageUrl} alt="" />
                                         </div>
                                         <div className="ml-3">
-                                            <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                                            <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                                            <div className="text-base font-medium leading-none text-white">{userMock.name}</div>
+                                            <div className="text-sm font-medium leading-none text-gray-400">{userMock.email}</div>
                                         </div>
                                         <button
                                             type="button"
@@ -211,5 +210,5 @@ useEffect(()=>{
           }
         </>
     )
-}
+        }
 export default Header;

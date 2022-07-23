@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 // import Home from "./Pages/Home/Home";
@@ -19,11 +19,17 @@ function App() {
   const localUser = JSON.parse(localStorage.getItem('userInfo'))
   const sessionUser = JSON.parse(sessionStorage.getItem('userInfo'))
   const [user, setUser] = React.useState(localUser?localUser:sessionUser?sessionUser:null)
+
+  useEffect(()=>{
+    localStorage.setItem('userInfo',JSON.stringify(user))
+  },[user])
+
+
   return (
     <div className="App">
       <main>
         <Router>
-          <Header />
+          <Header user={user}/>
           <Routes>
             <Route path="/" element={<React.Suspense fallback='Loading...'><LazyHome /></React.Suspense>} />
             <Route path="/about" element={<About />} />

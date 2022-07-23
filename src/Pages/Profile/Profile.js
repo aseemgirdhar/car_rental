@@ -6,19 +6,19 @@ import { Navigate } from "react-router-dom";
 const Profile = ({user, setUser}) => {
 
 
-  console.log({user})
+  console.log({user, setUser})
   // const user = JSON.parse(localStorage.getItem('userInfo'))
   // console.log(user.personalDetails)
   
-  const [showModal, setShowModal] = React.useState(user.personalDetails.a=='1'?true:false);
+  const [showModal, setShowModal] = React.useState(user.personalDetails?.a =='1'?true:false);
   
   //modaldata 
-  const [fname, setFname] = useState(user.personalDetails.fname?user.personalDetails.fname:'')
-  const [lname, setLname]= useState(user.personalDetails.lname?user.personalDetails.lname:'')
-  const [dob, setDob] = useState(user.personalDetails.dob?user.personalDetails.dob:'')
-  const [mob, setMob] = useState(user.personalDetails.mob?user.personalDetails.mob:'')
-  const [gender, setGender] = useState(user.personalDetails.gender?user.personalDetails.gender:'')
-  const [address, setAddress]= useState(user.personalDetails.address?user.personalDetails.address:'')
+  const [fname, setFname] = useState(user.personalDetails.fname?user.personalDetails?.fname:'')
+  const [lname, setLname]= useState(user.personalDetails.lname?user.personalDetails?.lname:'')
+  const [dob, setDob] = useState(user.personalDetails.dob?user.personalDetails?.dob:'')
+  const [mob, setMob] = useState(user.personalDetails.mob?user.personalDetails?.mob:'')
+  const [gender, setGender] = useState(user.personalDetails.gender?user.personalDetails?.gender:'')
+  const [address, setAddress]= useState(user.personalDetails.address?user.personalDetails?.address:'')
   const [permanentAddress, setPaddress] = useState(user.personalDetails.permanentAddress?user.personalDetails.permanentAddress:'')
   const [state, setState] = useState(user.personalDetails.state?user.personalDetails.state:'')
   const [city, setCity] = useState(user.personalDetails.city?user.personalDetails.city:'')
@@ -44,6 +44,7 @@ const Profile = ({user, setUser}) => {
       config
     );
     localStorage.setItem("userInfo", JSON.stringify(data));
+    setUser(data)
   }
   return (
   

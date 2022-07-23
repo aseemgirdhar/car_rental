@@ -31,7 +31,7 @@ const Login = ({setUser}) => {
         config
       );
      setUser(data)
-     localStorage.setItem("userInfo", JSON.stringify(data));
+    
     } else {
       const { data } = await axios.post(
         "/ownerAuth/login",
@@ -41,7 +41,7 @@ const Login = ({setUser}) => {
         },
         config
       );
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      setUser(data)
     }
     navigate("/dashboard");
   };
