@@ -9,9 +9,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [signup , showSignup] = useState(false);
   const [role, setRole] = useState("User");
+  const [lData , getLData] = useState(false)
   const showSignupComponent = () =>{
     showSignup(true)
   }
+  const data = {}
   const navigate = useNavigate();
   const loginHandeler = async (e) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ const Login = () => {
         },
         config
       );
+      localStorage.removeItem("userInfo");
      localStorage.setItem("userInfo", JSON.stringify(data));
     } else {
       const { data } = await axios.post(
@@ -40,11 +43,16 @@ const Login = () => {
         },
         config
       );
+      getLData(true);
+      localStorage.removeItem("userInfo");
       localStorage.setItem("userInfo", JSON.stringify(data));
     }
     navigate("/dashboard");
   };
+  useEffect(()=>{
 
+
+  }, [data])
   return (
     <section className="my-10">
       <div className="px-6 h-full text-gray-800">

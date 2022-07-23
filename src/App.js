@@ -1,4 +1,4 @@
-import React from "react";
+import React , {createContext, useEffect, useState} from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 // import Home from "./Pages/Home/Home";
@@ -14,15 +14,38 @@ import CarList from "./Pages/carList/CarList";
 import About from "./Pages/About/About";
 import AddCar from "./Pages/addCar/AddCar";
 const LazyHome = React.lazy(() => import ("./Pages/Home/Home"));
+const data = createContext();
+
 
 function App() {
+  
+  const [localData  , setLocalData] = useState([])
+  const [userRole, getUserRole]= useState(false);
 
+const getOwnerData = '';
+  useEffect(() => {
+    const getLocalData = JSON.parse(localStorage.getItem("userInfo"));
+    console.log(getLocalData)
+    if(getLocalData) {
+        setLocalData(getLocalData)
+    }
+    const getOwnerData = localData.role;
+
+    if(getOwnerData === 'Owner') {
+        getUserRole(true);
+    }
+
+  }, [getOwnerData]);
 
   return (
     <div className="App">
+      
       <main>
         <Router>
-          <Header />
+          <data.Provider value={localData.role}>
+            <Header />
+          </data.Provider>
+
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/about" element={<About />} />
@@ -43,3 +66,4 @@ function App() {
 }
 
 export default App;
+export {data};

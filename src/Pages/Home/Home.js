@@ -18,7 +18,6 @@ import {
 import "animate.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 const Home = () => {
   const [details, moreDetails] = useState(false);
   const [cardView, setCardView] = useState(false);
@@ -116,6 +115,7 @@ const Home = () => {
   }, [filtersSelected]);
   return (
     <>
+    
       <BookingBanner setCarList={setCarList} />
 
       <div className="bg-white mt-10">
