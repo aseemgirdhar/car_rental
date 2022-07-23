@@ -4,7 +4,7 @@ import "./Login.sass";
 import { useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login.png";
 import Signup from "../signup/Signup";
-const Login = () => {
+const Login = ({setUser}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signup , showSignup] = useState(false);
@@ -32,7 +32,7 @@ const Login = () => {
         },
         config
       );
-      localStorage.removeItem("userInfo");
+     setUser(data)
      localStorage.setItem("userInfo", JSON.stringify(data));
     } else {
       const { data } = await axios.post(

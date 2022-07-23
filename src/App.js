@@ -18,45 +18,29 @@ const data = createContext();
 
 
 function App() {
-  
-  const [localData  , setLocalData] = useState([])
-  const [userRole, getUserRole]= useState(false);
-
-const getOwnerData = '';
-  useEffect(() => {
-    const getLocalData = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(getLocalData)
-    if(getLocalData) {
-        setLocalData(getLocalData)
-    }
-    const getOwnerData = localData.role;
-
-    if(getOwnerData === 'Owner') {
-        getUserRole(true);
-    }
-
-  }, [getOwnerData]);
-
+  const localUser = JSON.parse(localStorage.getItem('userInfo'))
+  const sessionUser = JSON.parse(sessionStorage.getItem('userInfo'))
+  const [user, setUser] = React.useState(localUser?localUser:sessionUser?sessionUser:null)
   return (
     <div className="App">
       
       <main>
         <Router>
-          <data.Provider value={localData.role}>
+        
             <Header />
-          </data.Provider>
-
+         
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<React.Suspense fallback='Loading...'><LazyHome /></React.Suspense>} />
             <Route path="/about" element={<About />} />
             <Route path="/getCar/:id" element={<CarDetails />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/dashboard" element={<React.Suspense fallback='Loading...'><LazyHome /></React.Suspense>} />
+            <Route path="/profile" element={<Profile user={user} setUser={setUser}/>} />
+            <Route path="/dashboard" element={<React.Suspense fallback='Loading...'><LazyHome user={user}/></React.Suspense>} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/team" element={<Team />} />
-            <Route path="/car-list" element={<CarList />} />
+            <Route path="/car-list" element={<CarList user={user}/>} />
             <Route path="/add-car" element={<AddCar />} />
+            <Route path="/login" element={<Login setUser={setUser}/>} />
           </Routes>
           <Footer />
         </Router>
