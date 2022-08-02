@@ -32,7 +32,6 @@ function classNames(...classes) {
 const Header = ({user}) => {
     
    
-    console
     return (
         <>
         {
