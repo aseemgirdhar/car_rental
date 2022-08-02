@@ -375,7 +375,7 @@ const Home = ({user}) => {
                                     id={`filter-${section.id}-${optionIdx}`}
                                     name={`${section.id}`}
                                     defaultValue={option.value}
-                                    type="radio"
+                                    type="checkbox"
                                     defaultChecked={option.checked}
                                     onChange={(e)=>{
                                       console.log(e.target.value)
