@@ -9,9 +9,9 @@ const Login = ({setUser}) => {
   const [password, setPassword] = useState("");
   const [signup , showSignup] = useState(false);
   const [role, setRole] = useState("User");
-  const [lData , getLData] = useState(false)
+
   const showSignupComponent = () =>{
-    showSignup(true)
+    showSignup((signup) => !signup)
   }
   const data = {}
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ const Login = ({setUser}) => {
             <img src={loginImg} className="w-full" alt="Sample image" />
           </div>
          
-        {signup ? <Signup /> :  <div className="xl:ml-20 xl:w-3/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0 ">
+        {signup ? <Signup  showSignup = {showSignup} /> :  <div className="xl:ml-20 xl:w-3/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0 ">
             <form onSubmit={loginHandeler}>
               <div className="flex flex-row items-center justify-center lg:justify-center ">
                 <p className="text-lg mb-0 mr-4">Sign in with</p>
@@ -159,6 +159,7 @@ const Login = ({setUser}) => {
               </div>
               <div className="text-center lg:text-left">
                 <button
+              
                   type="submit"
                   className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
@@ -167,7 +168,7 @@ const Login = ({setUser}) => {
                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                   Don't have an account?
                   <a
-                        showSignup = {showSignup}
+                       
                     onClick={showSignupComponent}
                     className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out ml-3 cursor-pointer"
                   >

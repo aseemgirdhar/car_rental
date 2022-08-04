@@ -19,6 +19,12 @@ import "animate.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+
+
 const Home = ({user}) => {
   const [details, moreDetails] = useState(false);
   const [cardView, setCardView] = useState(false);
@@ -114,7 +120,7 @@ const Home = ({user}) => {
   useEffect(() => {
     getCarLists();
   }, [filtersSelected]);
-  console.log(user)
+
   return (
     <>
     
@@ -166,78 +172,142 @@ const Home = ({user}) => {
                       </button>
                     </div>
 
-                    {/* Filters */}
+                    {/* Filters for mobile */}
                     <form className="mt-4 border-t border-gray-200">
-                      <h3 className="sr-only">Categories</h3>
+                  <h3 className="sr-only">Categories</h3>
 
-                      {filters.map((section) => (
-                        <Disclosure
-                          as="div"
-                          key={section.id}
-                          className="border-t border-gray-200 px-4 py-6"
-                          
-                        >
-                          {({ open }) => (
-                            <>
-                              <h3 className="-mx-2 -my-3 flow-root">
-                                <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
-                                  <span className="font-medium text-gray-900">
-                                    {section.name}
-                                  </span>
-                                  <span className="ml-6 flex items-center"
-                                   >
-                                    {open ? (
-                                      <MinusSmIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                        // onClick={()=>{
-                                        
-                                        //   let filterTemp = filtersSelected
-                                        //   delete filterTemp[section.id]
-                                        //   setfiltersSelected({...filterTemp})
-                                        // }}
-                                      />
-                                    ) : 
-                                     
-                                       
-                                      
-                                    (
-                                      <PlusSmIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                    )}
-                                  </span>
-                                </Disclosure.Button>
-                              </h3>
-                              <Disclosure.Panel className="pt-6">
-                                <div className="space-y-6">
-                                  {section.options.map((option, optionIdx) => (
-                                    <div
-                                      key={option.value}
-                                      className="flex items-center"
-                                    >
-                                      <input
-                                        id={`filter-mobile-${section.id}-${optionIdx}`}
-                                        name={`${section.id}`}
-                                        type="radio"
-                                        className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
-                                      />
-                                      <label
-                                        htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                        className="ml-3 min-w-0 flex-1 text-gray-500"
-                                      >
-                                        {option.label}
-                                      </label>
-                                    </div>
-                                  ))}
+                  {filters.map((section) => 
+
+                    {
+                   return( <Accordion onChange={(event, expanded)=> {
+                    if(expanded == false){
+                      
+                      let filterTemp = filtersSelected
+                      delete filterTemp[section.id]
+                      setfiltersSelected({...filterTemp})
+
+                      //reset form
+                      let form = document.getElementById(section.id+'mob')
+                      console.log({form},'mob')
+                      form.reset()
+                    }
+                        console.log(expanded,section.name)
+                    }}>
+                    <AccordionSummary
+                      // expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1bh-content"
+                      id="panel1bh-header"
+                    >
+                      <Typography sx={{ flexShrink: 0 }}>
+                        {section.name}
+                      </Typography>
+                      {/* <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography> */}
+                    </AccordionSummary>
+                    <AccordionDetails>
+                  <form id={`${section.id}mob`}>
+                    {section.options.map((option, optionIdx) => (
+                                <div
+                                  key={option.value}
+                                  className="flex items-center"
+                                >
+                                  <input
+                                    id={`filter-${section.id}-${optionIdx}`}
+                                    name={`${section.id}`}
+                                    defaultValue={option.value}
+                                    type="radio"
+                                    defaultChecked={option.checked}
+                                    onChange={(e)=>{
+                                      console.log(e.target.value)
+                                      let filterTemp = filtersSelected
+                                      let value = e.target.value
+                                      if(typeof value === 'string'){
+                                        value = value.toLowerCase()
+
+                                      }
+                                      filterTemp[e.target.name] = value
+                                      console.log(filterTemp)
+                                      setfiltersSelected({...filterTemp})
+                                    }}
+                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  />
+                                  <label
+                                    htmlFor={`filter-${section.id}-${optionIdx}`}
+                                    className="ml-3 text-sm text-gray-600"
+                                  >
+                                    {option.label}
+                                  </label>
                                 </div>
-                              </Disclosure.Panel>
-                            </>
-                          )}
-                        </Disclosure>
-                      ))}
-                    </form>
+                              ))}
+
+                    </form>    
+
+                    </AccordionDetails>
+                    </Accordion>)
+                 
+                      {/* {({ open }) => (
+                        <>
+                          <h3 className="-my-3 flow-root">
+                            <Disclosure.Button className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500">
+                              <span className="font-medium text-gray-900">
+                                {section.name}
+                              </span>
+                              <span className="ml-6 flex items-center">
+                                {open ? (
+                                  <MinusSmIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                ) : (
+                                  <PlusSmIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                              </span>
+                            </Disclosure.Button>
+                          </h3>
+                          <Disclosure.Panel className="pt-6">
+                            <div className="space-y-4">
+                              {section.options.map((option, optionIdx) => (
+                                <div
+                                  key={option.value}
+                                  className="flex items-center"
+                                >
+                                  <input
+                                    id={`filter-${section.id}-${optionIdx}`}
+                                    name={`${section.id}`}
+                                    defaultValue={option.value}
+                                    type="radio"
+                                    defaultChecked={option.checked}
+                                    onChange={(e)=>{
+                                      console.log(e.target.value)
+                                      let filterTemp = filtersSelected
+                                      let value = e.target.value
+                                      if(typeof value === 'string'){
+                                        value = value.toLowerCase()
+
+                                      }
+                                      filterTemp[e.target.name] = value
+                                      console.log(filterTemp)
+                                      setfiltersSelected({...filterTemp})
+                                    }}
+                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  />
+                                  <label
+                                    htmlFor={`filter-${section.id}-${optionIdx}`}
+                                    className="ml-3 text-sm text-gray-600"
+                                  >
+                                    {option.label}
+                                  </label>
+                                </div>
+                              ))}
+                            </div>
+                          </Disclosure.Panel>
+                        </>
+                      )} */}
+                   }
+                  )}
+                </form>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
@@ -332,17 +402,79 @@ const Home = ({user}) => {
               </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
-                {/* Filters */}
+                {/* Filters  main*/}
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
 
-                  {filters.map((section) => (
-                    <Disclosure
-                      as="div"
-                      key={section.id}
-                      className="border-b border-gray-200 py-6"
+                  {filters.map((section) => 
+
+                    {
+                   return( <Accordion onChange={(event, expanded)=> {
+                    if(expanded == false){
+                      
+                      let filterTemp = filtersSelected
+                      delete filterTemp[section.id]
+                      setfiltersSelected({...filterTemp})
+
+                      //reset form
+                      let form = document.getElementById(section.id)
+                      console.log({form})
+                      form.reset()
+                    }
+                        console.log(expanded,section.name)
+                    }}>
+                    <AccordionSummary
+                      // expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1bh-content"
+                      id="panel1bh-header"
                     >
-                      {({ open }) => (
+                      <Typography sx={{ flexShrink: 0 }}>
+                        {section.name}
+                      </Typography>
+                      {/* <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography> */}
+                    </AccordionSummary>
+                    <AccordionDetails>
+                  <form id={section.id}>
+                    {section.options.map((option, optionIdx) => (
+                                <div
+                                  key={option.value}
+                                  className="flex items-center"
+                                >
+                                  <input
+                                    id={`filter-${section.id}-${optionIdx}`}
+                                    name={`${section.id}`}
+                                    defaultValue={option.value}
+                                    type="radio"
+                                    defaultChecked={option.checked}
+                                    onChange={(e)=>{
+                                      console.log(e.target.value)
+                                      let filterTemp = filtersSelected
+                                      let value = e.target.value
+                                      if(typeof value === 'string'){
+                                        value = value.toLowerCase()
+
+                                      }
+                                      filterTemp[e.target.name] = value
+                                      console.log(filterTemp)
+                                      setfiltersSelected({...filterTemp})
+                                    }}
+                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  />
+                                  <label
+                                    htmlFor={`filter-${section.id}-${optionIdx}`}
+                                    className="ml-3 text-sm text-gray-600"
+                                  >
+                                    {option.label}
+                                  </label>
+                                </div>
+                              ))}
+
+                    </form>    
+
+                    </AccordionDetails>
+                    </Accordion>)
+                 
+                      {/* {({ open }) => (
                         <>
                           <h3 className="-my-3 flow-root">
                             <Disclosure.Button className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500">
@@ -402,9 +534,9 @@ const Home = ({user}) => {
                             </div>
                           </Disclosure.Panel>
                         </>
-                      )}
-                    </Disclosure>
-                  ))}
+                      )} */}
+                   }
+                  )}
                 </form>
 
                 {/* Product grid */}

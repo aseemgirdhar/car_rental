@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 const Signup = ({showSignup}) => {
+  const showsign = showSignup;
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [contact, setContact] = useState("");
   const [role, setRole] = useState("User");
   const [name, setName] = useState("");
   const showLoginComponent = () => {
-    console.log(showSignup)
+    
     showSignup(false)
   }
   const signupHandeler = async (e) => {
@@ -149,7 +151,7 @@ const Signup = ({showSignup}) => {
             Already have an account?
             <a
               onClick={showLoginComponent}
-              className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out ml-3"
+              className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out ml-3  cursor-pointer"
             >
               Login
             </a>
