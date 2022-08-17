@@ -316,7 +316,7 @@ const Profile = ({user, setUser}) => {
                 />
               </div>
               <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-                Jane Doe
+               {user.name}
               </h1>
               <h3 className="text-gray-600 font-lg text-semibold leading-6">
                 Owner at Her Company Inc.
@@ -341,7 +341,7 @@ const Profile = ({user, setUser}) => {
                 </li>
                 <li className="flex items-center py-3">
                   <span>Wallet Balance</span>
-                  <span className="ml-auto">Rs. 3000</span>
+                  <span className="ml-auto">Rs. {user.wallet}</span>
                 </li>
               </ul>
             </div>
