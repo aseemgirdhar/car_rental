@@ -4,7 +4,7 @@ import "./Login.sass";
 import { useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login.png";
 import Signup from "../signup/Signup";
-const Login = ({setUser , user}) => {
+const Login = ({setUser}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signup , showSignup] = useState(false);
