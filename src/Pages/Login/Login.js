@@ -4,7 +4,7 @@ import "./Login.sass";
 import { useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login.png";
 import Signup from "../signup/Signup";
-const Login = ({setUser}) => {
+const Login = ({setUser , user}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signup , showSignup] = useState(false);
@@ -33,7 +33,7 @@ const Login = ({setUser}) => {
         config
       );
      setUser(data)
-    
+     navigate("/dashboard");
     } else {
       const { data } = await axios.post(
         "/ownerAuth/login",
@@ -45,7 +45,9 @@ const Login = ({setUser}) => {
       );
       setUser(data)
     }
-    navigate("/dashboard");
+   
+      navigate("/add-car");
+   
   };
   useEffect(()=>{
 

@@ -423,26 +423,26 @@ const CarList = ({ user }) => {
               </div>
               <div className="px-2">
                 {/* <p className="text-sm leading-5 py-4 text-gray-600"> Please find the car details below. you can also edit or delete car accoring to Availablity.</p> */}
-                <div className="flex mt-1">
-                  <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                <div className="flex mt-1 flex-wrap">
+                  <div className="py-2 px-4 mr-3 ml-3 mt-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
                     {car.car_number.toUpperCase()}
                   </div>
-                  <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                  <div className="py-2 px-4 mr-3 ml-3 mt-3  text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
                     {car.car_gear_type}
                   </div>
-                  <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                  <div className="py-2 px-4 mr-3 ml-3 mt-3  text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
                     {car.car_driven} Km Driven
                   </div>
-                  <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                  <div className="py-2 px-4 mr-3 ml-3 mt-3  text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
                     {car.car_fuel_type}
                   </div>
-                  <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                  <div className="py-2 px-4 mr-3 ml-3 mt-3  text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
                     {car.car_seats} Seater
                   </div>
-                  <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                  <div className="py-2 px-4 mr-3 ml-3 mt-3  text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
                     {car.car_tyre_type}
                   </div>
-                  <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                  <div className="py-2 px-4 mr-3 ml-3 mt-3  text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
                     {car.car_color}
                   </div>
                 </div>

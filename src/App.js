@@ -33,7 +33,7 @@ function App() {
       <main>
         <Router>
         
-            <Header />
+            <Header user={user} />
          
           <Routes>
             <Route path="/" element={<React.Suspense fallback='Loading...'><LazyHome /></React.Suspense>} />
